@@ -1,0 +1,22 @@
+# Reference: <https://editorconfig.org/#example-file>
+
+# Root configuration (don't look further into parents)
+root = true
+
+# All files
+[*]
+indent_style = tab
+indent_width = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# Source code
+[*.{js,scss}]
+trim_trailing_whitespace = true
+
+# Configuration
+[*.{json,yml}]
+indent_style = space
+indent_width = 2

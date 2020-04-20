@@ -1,0 +1,9 @@
+# VSCode settings
+/.vscode/
+
+# NPM dependencies cache
+/node_modules/
+/package-lock.json
+
+# NPM/webpack output
+/dist/
