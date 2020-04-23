@@ -1,5 +1,6 @@
 # Reference: <https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions>
 
+
 name: Build application
 
 on: [push, pull_request]
@@ -10,5 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Test
-        run: echo Test
+      - name: Checkout source
+        uses: actions/checkout@v2.1.0 # https://github.com/marketplace/actions/checkout
+      - name: Cache build
+        uses: actions/cache@v1.1.2  # https://github.com/marketplace/actions/cache
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package.json') }}
+      - name: Install dependencies
+        run: npm install
+      - name: Build app
+        run: npm run build
+      - name: Deploy Github Pages
+        uses: crazy-max/ghaction-github-pages@v1.4.0  # https://github.com/marketplace/actions/github-pages
+        with:
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token automatically generated for workflow
