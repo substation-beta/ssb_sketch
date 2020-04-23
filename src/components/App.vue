@@ -10,9 +10,6 @@
 
 <style lang="scss" scoped>
 	div {
-		background-image: url(../assets/images/logo.png);
-		width: 500px;
-		height: 500px;
 		h1 {
 			color: red;
 		}
