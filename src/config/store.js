@@ -14,3 +14,8 @@ export default new Vuex.Store({
 	mutations: { updateField },
 	plugins: [createPersistedState({ key: project.name + "-store", storage: window.localStorage })]
 });
+
+// For more:
+// * https://vuex.vuejs.org/api/
+// * https://github.com/maoberlehner/vuex-map-fields#store
+// * https://github.com/robinvdvleuten/vuex-persistedstate#api

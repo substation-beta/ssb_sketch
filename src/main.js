@@ -19,5 +19,7 @@ const vueApp = new Vue({
 
 // Register service worker
 OfflinePluginRuntime.install({
-	onUpdateReady: () => OfflinePluginRuntime.applyUpdate()
+	// Automatic update: <https://github.com/NekR/offline-plugin/blob/master/docs/updates.md>
+	onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+	onUpdated: () => window.location.reload(),
 });

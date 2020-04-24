@@ -7,6 +7,7 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const OfflinePlugin = require("offline-plugin");
 
+// Webpack configuration: <https://webpack.js.org/configuration/>
 module.exports = {
 	entry: "./src/main.js",
 	output: {
@@ -29,6 +30,7 @@ module.exports = {
 				options: {
 					presets: [
 						[
+							// Babel preset environment: <https://babeljs.io/docs/en/babel-preset-env>
 							"@babel/preset-env",
 							{
 								targets: ">= 2%, ie 11, not dead"
@@ -44,6 +46,7 @@ module.exports = {
 				test: /\.css$/,
 				use: [
 					{
+						// CSS options: https://github.com/webpack-contrib/mini-css-extract-plugin#options
 						loader: MiniCssExtractPlugin.loader,
 						options: {
 							publicPath: "../" // Fix subfolder in CSS filename
@@ -92,6 +95,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
+			// HTML build: <https://github.com/jantimon/html-webpack-plugin#options>
 			template: "./src/index.ejs",
 			templateParameters: project,
 			favicon: "./src/favicon.png"
@@ -106,6 +110,7 @@ module.exports = {
 			cache: true	// Faster re-builds
 		}),
 		new OfflinePlugin({
+			// Offline capabilities: <https://github.com/NekR/offline-plugin/blob/master/docs/options.md>
 			appShell: "/",
 			responseStrategy: "network-first",
 			version: new Date().toISOString(),

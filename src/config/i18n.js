@@ -18,3 +18,5 @@ export default new VueI18n({
 		}
 	}
 });
+
+// For more: <https://kazupon.github.io/vue-i18n/started.html#html>
