@@ -1,10 +1,9 @@
 <template>
 	<div>
 		<h1>
-			Hello world!
+			{{$t('hello')}}!
 		</h1>
-		<b-badge>New</b-badge>
-		<input v-model="shape" />
+		<input v-model="commands" />
 	</div>
 </template>
 
@@ -21,7 +20,7 @@
 
 	export default {
 		computed: mapFields([
-			"shape"
+			"commands"
 		]),
 	}
 </script>

@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		shape: ""
+		commands: ""
 	},
 	getters: { getField },
 	mutations: { updateField },

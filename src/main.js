@@ -5,6 +5,7 @@ import * as OfflinePluginRuntime from "offline-plugin/runtime";
 // Import resources
 import "./config/bootstrap";
 import store from "./config/store";
+import i18n from "./config/i18n";
 import "./main.scss";
 import App from "./components/App.vue";
 
@@ -12,7 +13,8 @@ import App from "./components/App.vue";
 const vueApp = new Vue({
 	el: "#app",
 	render: (createElement) => createElement(App),
-	store
+	store,
+	i18n
 });
 
 // Register service worker
