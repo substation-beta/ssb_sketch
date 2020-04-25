@@ -1,26 +1,22 @@
 <template>
-	<div>
-		<h1>
-			{{$t('hello')}}!
-		</h1>
-		<input v-model="commands" />
-	</div>
+	<b-container fluid class="p-0 vh-100 d-flex flex-column bg-danger">
+		<b-row no-gutters class="text-white bg-dark">
+			<ssb-toolbar />
+		</b-row>
+		<b-row no-gutters class="flex-fill bg-light">
+			<ssb-canvas />
+		</b-row>
+	</b-container>
 </template>
 
-<style lang="scss" scoped>
-	div {
-		h1 {
-			color: red;
-		}
-	}
-</style>
-
 <script>
-	import { mapFields } from "vuex-map-fields";
+	import Toolbar from "./Toolbar";
+	import Canvas from "./Canvas";
 
 	export default {
-		computed: mapFields([
-			"commands"
-		]),
+		components: {
+			"ssb-toolbar": Toolbar,
+			"ssb-canvas": Canvas
+		}
 	}
 </script>

@@ -11,10 +11,14 @@ export default new VueI18n({
     fallbackLocale: "en",
     messages: {
         en: {
-			hello: "hello"
+			commands: "Commands",
+			viewportWidth: "Viewport width",
+			viewportHeight: "Viewport height"
 		},
 		de: {
-			hello: "hallo"
+			commands: "Befehle",
+			viewportWidth: "Ansicht-Breite",
+			viewportHeight: "Ansicht-Höhe"
 		}
 	}
 });

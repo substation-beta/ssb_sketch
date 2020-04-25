@@ -8,7 +8,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		commands: ""
+		// Canvas attributes: <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
+		commands: "",
+		fillColor: "black",
+		strokeColor: "grey",
+		lineWidth: 2,
+		lineCap: "round",
+		lineJoin: "round",
+		viewportOffsetX: 0,
+		viewportOffsetY: 0,
+		viewportWidth: 100,
+		viewportHeight: 100
 	},
 	getters: { getField },
 	mutations: { updateField },
