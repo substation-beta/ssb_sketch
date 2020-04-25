@@ -9,3 +9,4 @@ Vue.use(IconsPlugin);
 // For more:
 // * https://bootstrap-vue.js.org/docs#tree-shaking-with-module-bundlers
 // * https://bootstrap-vue.js.org/docs/components/
+// * https://getbootstrap.com/docs/4.4/utilities/spacing/

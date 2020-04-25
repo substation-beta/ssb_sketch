@@ -36,8 +36,8 @@
 	function draw() {
 		// Prepare canvas
 		const canvas = this.$refs.canvas;
-		canvas.style.width = this.viewportWidth + "px";
-		canvas.style.height = this.viewportHeight + "px";
+		canvas.style.width = canvas.style.minWidth = this.viewportWidth + "px";
+		canvas.style.height = canvas.style.minHeight = this.viewportHeight + "px";
 		// Draw!
 		const ctx = canvas.getContext("2d");
 		ctx.fillStyle = "green";
