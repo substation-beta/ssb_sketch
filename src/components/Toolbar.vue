@@ -2,8 +2,9 @@
 	<b-button-toolbar>
 		<b-input-group>
 			<b-input :placeholder="$t('commands')" v-model="commands" />
-			<b-input :placeholder="$t('viewportWidth')" v-model="viewportWidth" />
 			<b-input :placeholder="$t('viewportHeight')" v-model="viewportHeight" />
+			<b-input :placeholder="$t('viewportOffsetX')" v-model="viewportOffsetX" />
+			<b-input :placeholder="$t('viewportOffsetY')" v-model="viewportOffsetY" />
 		</b-input-group>
 	</b-button-toolbar>
 </template>
@@ -14,8 +15,9 @@
 	export default {
 		computed: mapFields([
 			"commands",
-			"viewportWidth",
-			"viewportHeight"
+			"viewportHeight",
+			"viewportOffsetX",
+			"viewportOffsetY"
 		])
 	}
 </script>

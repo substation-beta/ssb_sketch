@@ -1,6 +1,12 @@
 <template>
-	<canvas ref="canvas" class="m-auto bg-white" />
+	<canvas ref="canvas" class="bg-white" />
 </template>
+
+<style lang="scss" scoped>
+	canvas {
+		cursor: crosshair;
+	}
+</style>
 
 <script>
 	import { mapFields } from "vuex-map-fields";
@@ -8,17 +14,13 @@
 	export default {
 		computed: mapFields([
 			"commands",
-			"fillColor",
-			"strokeColor",
 			"lineWidth",
 			"lineCap",
 			"lineJoin",
+			"viewportHeight",
 			"viewportOffsetX",
-			"viewportOffsetY",
-			"viewportWidth",
-			"viewportHeight"
+			"viewportOffsetY"
 		]),
-		mounted: draw,
 		watch: {
 			commands: draw,
 			fillColor: draw,
@@ -26,21 +28,38 @@
 			lineWidth: draw,
 			lineCap: draw,
 			lineJoin: draw,
+			viewportHeight: draw,
 			viewportOffsetX: draw,
-			viewportOffsetY: draw,
-			viewportWidth: draw,
-			viewportHeight: draw
+			viewportOffsetY: draw
+		},
+		mounted: function() {
+			const canvas = this.$refs.canvas,
+				canvasParent = canvas.parentNode,
+				drawWithContext = draw.bind(this),
+				initCanvas = () => {
+					canvas.style.width = canvasParent.offsetWidth + "px";
+					canvas.style.height = canvasParent.offsetHeight + "px";
+					drawWithContext();
+				};
+			initCanvas();
+			window.addEventListener("resize", initCanvas);
 		}
 	};
 
 	function draw() {
-		// Prepare canvas
-		const canvas = this.$refs.canvas;
-		canvas.style.width = canvas.style.minWidth = this.viewportWidth + "px";
-		canvas.style.height = canvas.style.minHeight = this.viewportHeight + "px";
+		// Get clean canvas
+		const canvas = this.$refs.canvas,
+			ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		// Set viewport
+		ctx.save();
+		const ratio = canvas.height / this.viewportHeight;
+		ctx.scale(ratio, ratio);
+		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
 		// Draw!
-		const ctx = canvas.getContext("2d");
 		ctx.fillStyle = "green";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.fillRect(0, 0, 100, 100);
+		// Unset viewport
+		ctx.restore();
 	}
 </script>

@@ -10,15 +10,12 @@ export default new Vuex.Store({
 	state: {
 		// Canvas attributes: <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
 		commands: "",
-		fillColor: "black",
-		strokeColor: "grey",
 		lineWidth: 2,
 		lineCap: "round",
 		lineJoin: "round",
+		viewportHeight: 100,	// Viewport width by screen resolution calculated
 		viewportOffsetX: 0,
-		viewportOffsetY: 0,
-		viewportWidth: 100,
-		viewportHeight: 100
+		viewportOffsetY: 0
 	},
 	getters: { getField },
 	mutations: { updateField },
