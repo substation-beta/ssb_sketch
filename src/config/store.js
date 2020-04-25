@@ -8,12 +8,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		// Canvas attributes: <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
 		commands: "",
 		lineWidth: 2,
 		lineCap: "round",
 		lineJoin: "round",
-		viewportHeight: 100,	// Viewport width by screen resolution calculated
+		viewportWidth: null,	// Calculated by given height with screen resolution
+		viewportHeight: 100,
 		viewportOffsetX: 0,
 		viewportOffsetY: 0
 	},

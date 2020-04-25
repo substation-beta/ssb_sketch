@@ -12,12 +12,14 @@ export default new VueI18n({
     messages: {
         en: {
 			commands: "Commands",
+			viewportWidth: "Viewport (width)",
 			viewportHeight: "Viewport (height)",
 			viewportOffsetX: "Offset (horizontal)",
 			viewportOffsetY: "Offset (vertical)"
 		},
 		de: {
 			commands: "Befehle",
+			viewportWidth: "Ansicht (Breite)",
 			viewportHeight: "Ansicht (Höhe)",
 			viewportOffsetX: "Verschiebung (horizontal)",
 			viewportOffsetY: "Verschiebung (vertikal)"
