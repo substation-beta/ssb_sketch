@@ -1,5 +1,5 @@
 <template>
-	<canvas ref="canvas" class="bg-white" />
+	<canvas ref="canvas" />
 </template>
 
 <style lang="scss" scoped>
@@ -23,8 +23,6 @@
 		]),
 		watch: {
 			commands: draw,
-			fillColor: draw,
-			strokeColor: draw,
 			lineWidth: draw,
 			lineCap: draw,
 			lineJoin: draw,
@@ -37,8 +35,8 @@
 				canvasParent = canvas.parentNode,
 				drawWithContext = draw.bind(this),
 				initCanvas = () => {
-					canvas.style.width = canvasParent.offsetWidth + "px";
-					canvas.style.height = canvasParent.offsetHeight + "px";
+					canvas.setAttribute("width", canvasParent.offsetWidth);
+					canvas.setAttribute("height", canvasParent.offsetHeight);
 					drawWithContext();
 				};
 			initCanvas();
@@ -47,19 +45,28 @@
 	};
 
 	function draw() {
-		// Get clean canvas
+		// Prepare canvas
 		const canvas = this.$refs.canvas,
 			ctx = canvas.getContext("2d");
+		ctx.fillStyle = "white";
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		// Set viewport
 		ctx.save();
-		const ratio = canvas.height / this.viewportHeight;
+		// Assign viewport
+		const ratio = canvas.height / this.viewportHeight,
+			viewportWidth = canvas.width / ratio;
+		console.log(viewportWidth);
 		ctx.scale(ratio, ratio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
-		// Draw!
-		ctx.fillStyle = "green";
-		ctx.fillRect(0, 0, 100, 100);
-		// Unset viewport
+		// Draw axis
+		const axisLineWidth = this.viewportHeight / 200;
+		ctx.fillStyle = "black";
+		ctx.fillRect(-0.5, -this.viewportOffsetY, axisLineWidth, axisLineWidth * 4);
+		ctx.fillRect(-this.viewportOffsetX, -0.5, axisLineWidth * 4, axisLineWidth);
+		// Draw commands!
+		
+		// TODO
+
+		// Reset canvas
 		ctx.restore();
 	}
 </script>

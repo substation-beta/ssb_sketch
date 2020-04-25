@@ -3,7 +3,7 @@
 		<b-row no-gutters class="text-white bg-dark">
 			<ssb-toolbar />
 		</b-row>
-		<b-row no-gutters class="flex-fill overflow-auto bg-light">
+		<b-row no-gutters class="flex-fill overflow-auto text-black bg-light">
 			<ssb-canvas />
 		</b-row>
 	</b-container>
