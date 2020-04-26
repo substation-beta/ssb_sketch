@@ -2,7 +2,7 @@
 	<canvas ref="canvas"
 		@mousemove="$emit('cursor', {x: ($event.offsetX / viewportRatio - viewportOffsetX).toFixed(2), y: ($event.offsetY / viewportRatio - viewportOffsetY).toFixed(2)})"
 		@mouseleave="$emit('cursor', null)"
-	/>
+	><code>Your browser has to support canvas for this application content!</code></canvas>
 </template>
 
 <style lang="scss" scoped>
@@ -59,7 +59,7 @@
 
 	function draw() {
 		// Canvas rendering reference: <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
-		// Setup canvas
+		// Prepare canvas
 		const canvas = this.$refs.canvas,
 			ctx = canvas.getContext("2d");
 		ctx.fillStyle = "white";
@@ -81,8 +81,18 @@
 		ctx.scale(this.viewportRatio, this.viewportRatio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
 		// Draw commands!
-		
+		ctx.fillStyle = "black";
+		ctx.strokeStyle = "grey";
+		ctx.miterLimit = this.viewportHeight;
+		ctx.lineWidth = this.lineWidth;
+		ctx.lineCap = this.lineCap;
+		ctx.lineJoin = this.lineJoin;
+
+
 		// TODO: draw commands
+		ctx.strokeRect(0, 0, 20, 10);
+		ctx.fillRect(0, 0, 20, 10);
+		
 
 		// Reset canvas
 		ctx.restore();
