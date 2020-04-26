@@ -27,9 +27,7 @@
 				"viewportOffsetY"
 			]),
 			viewportRatio: {
-				get() {
-					return this.$refs.canvas.height / this.viewportHeight;
-				},
+				get() { return this.$refs.canvas.height / this.viewportHeight; },
 				cache: false	// Canvas reference not watched for cache refresh
 			}
 		},
@@ -38,17 +36,20 @@
 			lineWidth: draw,
 			lineCap: draw,
 			lineJoin: draw,
-			viewportHeight: draw,
+			viewportHeight() { this.updateViewportWidth(); draw.bind(this)(); },
 			viewportOffsetX: draw,
 			viewportOffsetY: draw
 		},
-		mounted: function() {
+		methods: {
+			updateViewportWidth() { this.viewportWidth = this.$refs.canvas.width / this.viewportRatio; }
+		},
+		mounted() {
 			const initCanvas = function() {
 				const canvas = this.$refs.canvas,
 					canvasParent = canvas.parentNode;
 				canvas.setAttribute("width", canvasParent.offsetWidth);
 				canvas.setAttribute("height", canvasParent.offsetHeight);
-				this.viewportWidth = canvas.width / this.viewportRatio;
+				this.updateViewportWidth();
 				draw.bind(this)();
 			}.bind(this);
 			initCanvas();

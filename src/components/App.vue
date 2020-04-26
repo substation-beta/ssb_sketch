@@ -18,7 +18,7 @@
 	import Statusbar from "./Statusbar";
 
 	export default {
-		data: () => ({canvasCursor: null}),
+		data: () => ({ canvasCursor: null }),
 		components: {
 			"ssb-toolbar": Toolbar,
 			"ssb-canvas": Canvas,
