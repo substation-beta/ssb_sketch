@@ -15,6 +15,7 @@
 	import { mapFields } from "vuex-map-fields";
 
 	export default {
+		data: () => ({ viewportRatio: null }),
 		computed: {
 			...mapFields([
 				"commands",
@@ -25,23 +26,22 @@
 				"viewportHeight",
 				"viewportOffsetX",
 				"viewportOffsetY"
-			]),
-			viewportRatio: {
-				get() { return this.$refs.canvas.height / this.viewportHeight; },
-				cache: false	// Canvas reference not watched for cache refresh
-			}
+			])
 		},
 		watch: {
 			commands: draw,
 			lineWidth: draw,
 			lineCap: draw,
 			lineJoin: draw,
-			viewportHeight() { this.updateViewportWidth(); draw.bind(this)(); },
+			viewportHeight() { this.updateViewportResolution(); draw.bind(this)(); },
 			viewportOffsetX: draw,
 			viewportOffsetY: draw
 		},
 		methods: {
-			updateViewportWidth() { this.viewportWidth = this.$refs.canvas.width / this.viewportRatio; }
+			updateViewportResolution() {
+				this.viewportRatio = this.$refs.canvas.height / this.viewportHeight;
+				this.viewportWidth = this.$refs.canvas.width / this.viewportRatio;
+			}
 		},
 		mounted() {
 			const initCanvas = function() {
@@ -49,7 +49,7 @@
 					canvasParent = canvas.parentNode;
 				canvas.setAttribute("width", canvasParent.offsetWidth);
 				canvas.setAttribute("height", canvasParent.offsetHeight);
-				this.updateViewportWidth();
+				this.updateViewportResolution();
 				draw.bind(this)();
 			}.bind(this);
 			initCanvas();
@@ -65,14 +65,21 @@
 		ctx.fillStyle = "white";
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.save();
+		// Draw axis
+		const axisSize = {width: 4, height: 12};
+		ctx.fillStyle = "black";
+		ctx.font = axisSize.height + "px 'Open Sans'";
+		ctx.fillRect(this.viewportRatio * this.viewportOffsetX - axisSize.width / 2, 0, axisSize.width, axisSize.height);
+		ctx.textAlign = "center";
+		ctx.textBaseline = "top";
+		ctx.fillText("0", this.viewportRatio * this.viewportOffsetX, axisSize.height + 1);
+		ctx.fillRect(0, this.viewportRatio * this.viewportOffsetY - axisSize.width / 2, axisSize.height, axisSize.width);
+		ctx.textAlign = "left";
+		ctx.textBaseline = "middle";
+		ctx.fillText("0", axisSize.height + 1, this.viewportRatio * this.viewportOffsetY);
 		// Assign viewport
 		ctx.scale(this.viewportRatio, this.viewportRatio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
-		// Draw axis
-		const axisLineWidth = this.viewportHeight / 200;
-		ctx.fillStyle = "black";
-		ctx.fillRect(-0.5, -this.viewportOffsetY, axisLineWidth, axisLineWidth * 4);
-		ctx.fillRect(-this.viewportOffsetX, -0.5, axisLineWidth * 4, axisLineWidth);
 		// Draw commands!
 		
 		// TODO: draw commands
