@@ -7,7 +7,7 @@
 			<ssb-canvas @cursor="canvasCursor = $event" />
 		</main>
 		<footer class="text-white bg-dark">
-			<b-icon icon="cursor" /> {{ canvasCursor ? canvasCursor.x + " / " + canvasCursor.y : "" }}
+			<ssb-statusbar :cursor="canvasCursor" />
 		</footer>
 	</div>
 </template>
@@ -15,12 +15,14 @@
 <script>
 	import Toolbar from "./Toolbar";
 	import Canvas from "./Canvas";
+	import Statusbar from "./Statusbar";
 
 	export default {
 		data: () => ({canvasCursor: null}),
 		components: {
 			"ssb-toolbar": Toolbar,
-			"ssb-canvas": Canvas
+			"ssb-canvas": Canvas,
+			"ssb-statusbar": Statusbar
 		}
 	}
 </script>
