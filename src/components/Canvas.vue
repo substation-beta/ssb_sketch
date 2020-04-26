@@ -1,5 +1,8 @@
 <template>
-	<canvas ref="canvas" @mousemove="updateCursorPosition" @mouseleave="removeCursorPosition" />
+	<canvas ref="canvas"
+		@mousemove="$emit('cursor', {x: ($event.offsetX / viewportRatio - viewportOffsetX).toFixed(2), y: ($event.offsetY / viewportRatio - viewportOffsetY).toFixed(2)})"
+		@mouseleave="$emit('cursor', null)"
+	/>
 </template>
 
 <style lang="scss" scoped>
@@ -12,19 +15,22 @@
 	import { mapFields } from "vuex-map-fields";
 
 	export default {
-		data: () => ({cursorPos: null}),
-		computed: mapFields([
-			"commands",
-			"lineWidth",
-			"lineCap",
-			"lineJoin",
-			"viewportWidth",
-			"viewportHeight",
-			"viewportOffsetX",
-			"viewportOffsetY"
-		]),
+		computed: {
+			...mapFields([
+				"commands",
+				"lineWidth",
+				"lineCap",
+				"lineJoin",
+				"viewportWidth",
+				"viewportHeight",
+				"viewportOffsetX",
+				"viewportOffsetY"
+			]),
+			viewportRatio: function() {
+				return this.$refs.canvas.height / this.viewportHeight;
+			}
+		},
 		watch: {
-			cursorPos: draw,
 			commands: draw,
 			lineWidth: draw,
 			lineCap: draw,
@@ -44,10 +50,6 @@
 				};
 			initCanvas();
 			window.addEventListener("resize", initCanvas);
-		},
-		methods: {
-			updateCursorPosition: function(evt) { this.cursorPos = {x: evt.offsetX, y: evt.offsetY}; },
-			removeCursorPosition: function() { this.cursorPos = null; }
 		}
 	};
 
@@ -60,9 +62,8 @@
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.save();
 		// Assign viewport
-		const ratio = canvas.height / this.viewportHeight;
-		this.viewportWidth = canvas.width / ratio;
-		ctx.scale(ratio, ratio);
+		this.viewportWidth = canvas.width / this.viewportRatio;
+		ctx.scale(this.viewportRatio, this.viewportRatio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
 		// Draw axis
 		const axisLineWidth = this.viewportHeight / 200;
@@ -73,20 +74,6 @@
 		
 		// TODO: draw commands
 
-		// Draw cursor position
-		if(this.cursorPos) {
-			ctx.restore();
-			ctx.save();
-			ctx.textAlign = "right";
-			ctx.textBaseline = "bottom";
-			ctx.fillStyle = "black";
-			ctx.font = "1em 'Open Sans'";
-			ctx.fillText(
-				(this.cursorPos.x / ratio - this.viewportOffsetX).toFixed(2) + " / " + (this.cursorPos.y / ratio - this.viewportOffsetY).toFixed(2),
-				canvas.width - 1,
-				canvas.height - 1
-			);
-		}
 		// Reset canvas
 		ctx.restore();
 	}

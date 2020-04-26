@@ -1,12 +1,15 @@
 <template>
-	<b-container fluid class="p-0 vh-100 d-flex flex-column bg-danger">
-		<b-row no-gutters class="text-white bg-dark">
+	<div class="vh-100 d-flex flex-column">
+		<header class="text-white bg-dark">
 			<ssb-toolbar />
-		</b-row>
-		<b-row no-gutters class="flex-fill overflow-auto text-black bg-light">
-			<ssb-canvas />
-		</b-row>
-	</b-container>
+		</header>
+		<main  class="flex-fill overflow-hidden text-black bg-light">
+			<ssb-canvas @cursor="canvasCursor = $event" />
+		</main>
+		<footer class="text-white bg-dark">
+			<b-icon icon="cursor" /> {{ canvasCursor ? canvasCursor.x + " / " + canvasCursor.y : "" }}
+		</footer>
+	</div>
 </template>
 
 <script>
@@ -14,6 +17,7 @@
 	import Canvas from "./Canvas";
 
 	export default {
+		data: () => ({canvasCursor: null}),
 		components: {
 			"ssb-toolbar": Toolbar,
 			"ssb-canvas": Canvas
