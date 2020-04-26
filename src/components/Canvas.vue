@@ -26,8 +26,11 @@
 				"viewportOffsetX",
 				"viewportOffsetY"
 			]),
-			viewportRatio: function() {
-				return this.$refs.canvas.height / this.viewportHeight;
+			viewportRatio: {
+				get() {
+					return this.$refs.canvas.height / this.viewportHeight;
+				},
+				cache: false	// Canvas reference not watched for cache refresh
 			}
 		},
 		watch: {
@@ -40,14 +43,14 @@
 			viewportOffsetY: draw
 		},
 		mounted: function() {
-			const canvas = this.$refs.canvas,
-				canvasParent = canvas.parentNode,
-				drawWithContext = draw.bind(this),
-				initCanvas = () => {
-					canvas.setAttribute("width", canvasParent.offsetWidth);
-					canvas.setAttribute("height", canvasParent.offsetHeight);
-					drawWithContext();
-				};
+			const initCanvas = function() {
+				const canvas = this.$refs.canvas,
+					canvasParent = canvas.parentNode;
+				canvas.setAttribute("width", canvasParent.offsetWidth);
+				canvas.setAttribute("height", canvasParent.offsetHeight);
+				this.viewportWidth = canvas.width / this.viewportRatio;
+				draw.bind(this)();
+			}.bind(this);
 			initCanvas();
 			window.addEventListener("resize", initCanvas);
 		}
@@ -62,7 +65,6 @@
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.save();
 		// Assign viewport
-		this.viewportWidth = canvas.width / this.viewportRatio;
 		ctx.scale(this.viewportRatio, this.viewportRatio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
 		// Draw axis
