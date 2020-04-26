@@ -1,5 +1,6 @@
 {
   "name": "ssb_sketch",
+  "display": "SSB sketch",
   "version": "0.1.0",
   "description": "Simple canvas for shape prototyping.",
   "keywords": [

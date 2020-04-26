@@ -11,6 +11,7 @@ export default new VueI18n({
     fallbackLocale: "en",
     messages: {
         en: {
+			loaded_at: "loaded at",
 			commands: "Commands",
 			viewportWidth: "Viewport (width)",
 			viewportHeight: "Viewport (height)",
@@ -18,6 +19,7 @@ export default new VueI18n({
 			viewportOffsetY: "Offset (vertical)"
 		},
 		de: {
+			loaded_at: "geladen am",
 			commands: "Befehle",
 			viewportWidth: "Ansicht (Breite)",
 			viewportHeight: "Ansicht (Höhe)",
