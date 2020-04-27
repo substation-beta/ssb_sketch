@@ -13,6 +13,9 @@ export default new VueI18n({
         en: {
 			loaded_at: "loaded at",
 			commands: "Commands",
+			lineWidth: "Line width",
+			lineCap: "Line cap",
+			lineJoin: "Line join",
 			viewportWidth: "Viewport (width)",
 			viewportHeight: "Viewport (height)",
 			viewportOffsetX: "Offset (horizontal)",
@@ -21,6 +24,9 @@ export default new VueI18n({
 		de: {
 			loaded_at: "geladen am",
 			commands: "Befehle",
+			lineWidth: "Linien Breite",
+			lineCap: "Linienende",
+			lineJoin: "Linienverbindung",
 			viewportWidth: "Ansicht (Breite)",
 			viewportHeight: "Ansicht (Höhe)",
 			viewportOffsetX: "Verschiebung (horizontal)",

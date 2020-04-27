@@ -84,7 +84,7 @@
 		ctx.fillStyle = "black";
 		ctx.strokeStyle = "grey";
 		ctx.miterLimit = this.viewportHeight;
-		ctx.lineWidth = this.lineWidth;
+		ctx.lineWidth = Math.max(this.lineWidth, Number.MIN_VALUE);
 		ctx.lineCap = this.lineCap;
 		ctx.lineJoin = this.lineJoin;
 
