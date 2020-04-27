@@ -81,17 +81,18 @@
 		ctx.scale(this.viewportRatio, this.viewportRatio);
 		ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
 		// Draw commands!
-		ctx.fillStyle = "black";
-		ctx.strokeStyle = "grey";
+		ctx.fillStyle = "blue";
+		ctx.strokeStyle = "red";
 		ctx.miterLimit = this.viewportHeight;
 		ctx.lineWidth = Math.max(this.lineWidth, Number.MIN_VALUE);
 		ctx.lineCap = this.lineCap;
 		ctx.lineJoin = this.lineJoin;
+		ctx.globalAlpha = 0.5;
 
 
 		// TODO: draw commands
-		ctx.strokeRect(0, 0, 20, 10);
-		ctx.fillRect(0, 0, 20, 10);
+		ctx.strokeRect(-10, -5, 20, 10);
+		ctx.fillRect(-10, -5, 20, 10);
 		
 
 		// Reset canvas

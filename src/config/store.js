@@ -9,13 +9,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		commands: "",
-		lineWidth: 2,
+		lineWidth: 1,
 		lineCap: "round",
 		lineJoin: "round",
-		viewportWidth: null,	// Calculated by given height with screen resolution
+		viewportWidth: null,	// Calculated by given height on canvas update
 		viewportHeight: 100,
-		viewportOffsetX: 0,
-		viewportOffsetY: 0
+		viewportOffsetX: 50,
+		viewportOffsetY: 50
 	},
 	getters: { getField },
 	mutations: { updateField },
