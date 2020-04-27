@@ -1,11 +1,13 @@
 <template>
 	<b-container fluid class="p-0">
-		<span class="float-left">
-			<b-icon icon="cursor-fill" /> {{ cursor ? cursor.x + " / " + cursor.y : "" }}
-		</span>
-		<span class="float-right">
-			<b><b-icon icon="exclamation-circle" /> v{{ version }}</b> {{ $t('loaded_at') }} <i>{{ date }}</i>
-		</span>
+		<b-row no-gutters>
+			<b-col cols="4" class="text-left">
+				<b-icon icon="cursor-fill" /> {{ cursor ? cursor.x + " / " + cursor.y : "" }}
+			</b-col>
+			<b-col cols="8" class="text-right">
+				<b><b-icon icon="exclamation-circle" /> v{{ version }}</b> {{ $t('loaded_at') }} <i>{{ date }}</i>
+			</b-col>
+		</b-row>
 	</b-container>
 </template>
 
