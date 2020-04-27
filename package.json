@@ -17,7 +17,8 @@
   "repository": "github:substation-beta/ssb_sketch",
   "private": true,
   "engines": {
-    "node": ">=10"
+    "node": ">=10",
+    "npm": ">=6"
   },
   "browser": "window",
   "scripts": {

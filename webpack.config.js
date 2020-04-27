@@ -112,8 +112,8 @@ module.exports = {
 		new OfflinePlugin({
 			// Offline capabilities: <https://github.com/NekR/offline-plugin/blob/master/docs/options.md>
 			appShell: "/",
-			responseStrategy: "network-first",
-			version: new Date().toISOString(),
+			responseStrategy: "network-first",	// Always check for application updates
+			version: new Date().toISOString(),	// Default doesn't contain seconds for development purpose
 			ServiceWorker: {
 				cacheName: project.name + "-" + project.version,
 				events: true
