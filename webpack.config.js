@@ -138,9 +138,11 @@ module.exports = {
 				{
 					src: "src/favicon.png",
 					sizes: [64, 128, 256, 512],
-					destination: "icons"
+					destination: "icons",
+					ios: true
 				}
-			]
+			],
+			ios: true
 		}),
 		new RobotstxtPlugin({
 			policy: [
