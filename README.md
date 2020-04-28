@@ -1,5 +1,5 @@
 # ssb_sketch
-Simple canvas for shape prototyping.
+Simple canvas for shape prototyping as PWA.
 
 ## Setup
 * Install [NodeJS](https://nodejs.org/en/download/) (includes **NPM**)

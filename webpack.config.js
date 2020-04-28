@@ -1,11 +1,12 @@
-const path = require("path");
-const project = require("./package.json");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
-const OfflinePlugin = require("offline-plugin");
+const path = require("path"),
+	project = require("./package.json"),
+	{ CleanWebpackPlugin } = require("clean-webpack-plugin"),
+	HtmlWebpackPlugin = require("html-webpack-plugin"),
+	MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+	VueLoaderPlugin = require("vue-loader/lib/plugin"),
+	CompressionPlugin = require("compression-webpack-plugin"),
+	OfflinePlugin = require("offline-plugin"),
+	WebpackPwaManifest = require("webpack-pwa-manifest");
 
 // Webpack configuration: <https://webpack.js.org/configuration/>
 module.exports = {
@@ -96,9 +97,9 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			// HTML build: <https://github.com/jantimon/html-webpack-plugin#options>
-			template: "./src/index.ejs",
+			template: "src/index.ejs",
 			templateParameters: project,
-			favicon: "./src/favicon.png"
+			favicon: "src/favicon.png"
 		}),
 		new MiniCssExtractPlugin({
 			filename: "css/[name].[contenthash:8].css",
@@ -118,6 +119,27 @@ module.exports = {
 				cacheName: project.name + "-" + project.version,
 				events: true
 			}
+		}),
+		new WebpackPwaManifest({
+			// Manifest specification: <https://developer.mozilla.org/en-US/docs/Web/Manifest>
+			name: project.display,
+			short_name: project.name,
+			description: project.description,
+			categories: project.keywords,
+			lang: "en-US",
+			background_color: "black",
+			theme_color: "black",
+			display: "standalone",
+			orientation: "portrait",
+			start_url: ".",
+			scope: "/",
+			icons: [
+				{
+					src: "src/favicon.png",
+					sizes: [64, 128, 256],
+					destination: "icons"
+				}
+			]
 		})
 	],
 	optimization: {
