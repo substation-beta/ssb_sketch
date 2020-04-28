@@ -6,7 +6,8 @@ const path = require("path"),
 	VueLoaderPlugin = require("vue-loader/lib/plugin"),
 	CompressionPlugin = require("compression-webpack-plugin"),
 	OfflinePlugin = require("offline-plugin"),
-	WebpackPwaManifest = require("webpack-pwa-manifest");
+	WebpackPwaManifest = require("webpack-pwa-manifest"),
+	RobotstxtPlugin = require("robotstxt-webpack-plugin");
 
 // Webpack configuration: <https://webpack.js.org/configuration/>
 module.exports = {
@@ -136,8 +137,16 @@ module.exports = {
 			icons: [
 				{
 					src: "src/favicon.png",
-					sizes: [64, 128, 256],
+					sizes: [64, 128, 256, 512],
 					destination: "icons"
+				}
+			]
+		}),
+		new RobotstxtPlugin({
+			policy: [
+				{
+					userAgent: "*",
+					allow: "/"
 				}
 			]
 		})
