@@ -137,7 +137,7 @@ module.exports = {
 			icons: [
 				{
 					src: "src/favicon.png",
-					sizes: [64, 128, 256, 512],
+					sizes: [64, 128, 256, 512],	// 512x512 required for installation splash screen
 					destination: "icons",
 					ios: true
 				}

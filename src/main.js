@@ -2,10 +2,13 @@
 import Vue from "vue";
 import * as OfflinePluginRuntime from "offline-plugin/runtime";
 
+// Import plugins
+import "./plugins/uid";
+import "./plugins/bootstrap";
+import store from "./plugins/store";
+import i18n from "./plugins/i18n";
+
 // Import resources
-import "./config/bootstrap";
-import store from "./config/store";
-import i18n from "./config/i18n";
 import "./main.scss";
 import App from "./components/App.vue";
 
