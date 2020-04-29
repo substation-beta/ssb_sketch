@@ -24,7 +24,7 @@
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack-dev-server --open --hot",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src webpack.config.js"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
