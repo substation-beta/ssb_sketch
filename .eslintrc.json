@@ -6,6 +6,16 @@
         "standard",
         "plugin:vue/recommended"
     ],
+    "rules": {
+        "no-tabs": "off",
+        "indent": ["warn", "tab"],
+        "semi": "off",
+        "space-before-function-paren": "off",
+        "vue/html-indent": ["warn", "tab"],
+        "vue/max-attributes-per-line": ["warn", { "singleline": 9, "multiline": { "allowFirstLine": true } }],
+        "vue/require-prop-types": "off",
+        "vue/singleline-html-element-content-newline": "off"
+    },
     "env": {
         "browser": true,
         "serviceworker": true

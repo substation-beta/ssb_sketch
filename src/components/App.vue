@@ -3,7 +3,7 @@
 		<header class="text-white bg-dark">
 			<ssb-toolbar />
 		</header>
-		<main  class="flex-fill overflow-hidden text-black bg-light">
+		<main class="flex-fill overflow-hidden text-black bg-light">
 			<ssb-canvas @cursor="canvasCursor = $event" />
 		</main>
 		<footer class="text-white bg-dark">
@@ -13,16 +13,16 @@
 </template>
 
 <script>
-	import Toolbar from "./Toolbar";
-	import Canvas from "./Canvas";
-	import Statusbar from "./Statusbar";
+import Toolbar from './Toolbar';
+import Canvas from './Canvas';
+import Statusbar from './Statusbar';
 
-	export default {
-		data: () => ({ canvasCursor: null }),
-		components: {
-			"ssb-toolbar": Toolbar,
-			"ssb-canvas": Canvas,
-			"ssb-statusbar": Statusbar
-		}
-	}
+export default {
+	components: {
+		'ssb-toolbar': Toolbar,
+		'ssb-canvas': Canvas,
+		'ssb-statusbar': Statusbar
+	},
+	data: () => ({ canvasCursor: null })
+}
 </script>

@@ -15,6 +15,7 @@ insert_final_newline = false
 # Source code
 [*.{js,scss}]
 trim_trailing_whitespace = true
+insert_final_newline = true
 
 # Configuration
 [*.{json,yml}]

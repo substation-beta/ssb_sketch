@@ -1,20 +1,21 @@
 // Import modules
-import Vue from "vue";
-import * as OfflinePluginRuntime from "offline-plugin/runtime";
+import Vue from 'vue';
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
 // Import plugins
-import "./plugins/uid";
-import "./plugins/bootstrap";
-import store from "./plugins/store";
-import i18n from "./plugins/i18n";
+import './plugins/uid';
+import './plugins/bootstrap';
+import store from './plugins/store';
+import i18n from './plugins/i18n';
 
 // Import resources
-import "./main.scss";
-import App from "./components/App.vue";
+import './main.scss';
+import App from './components/App.vue';
 
 // Mount application
+// eslint-disable-next-line no-unused-vars
 const vueApp = new Vue({
-	el: "#app",
+	el: '#app',
 	render: (createElement) => createElement(App),
 	store,
 	i18n
@@ -24,5 +25,5 @@ const vueApp = new Vue({
 OfflinePluginRuntime.install({
 	// Automatic update: <https://github.com/NekR/offline-plugin/blob/master/docs/updates.md>
 	onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-	onUpdated: () => window.location.reload(),
+	onUpdated: () => window.location.reload()
 });

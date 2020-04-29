@@ -12,13 +12,13 @@
 </template>
 
 <script>
-	export default {
-		props: [
-			"cursor"
-		],
-		data: () => ({
-			version: document.querySelector("html > head > meta[name='version']").content,
-			date: new Date().toLocaleString()
-		})
-	}
+export default {
+	props: [
+		'cursor'
+	],
+	data: () => ({
+		version: document.querySelector("html > head > meta[name='version']").content,
+		date: new Date().toLocaleString()
+	})
+}
 </script>
