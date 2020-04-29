@@ -2,8 +2,9 @@ import Vue from "vue";
 import {
 	LayoutPlugin,
 	IconsPlugin,
-	ButtonToolbarPlugin,
+	FormGroupPlugin,
 	InputGroupPlugin,
+	FormTextareaPlugin,
 	FormInputPlugin,
 	FormSelectPlugin
 } from "bootstrap-vue";
@@ -12,8 +13,9 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(LayoutPlugin);
 Vue.use(IconsPlugin);
-Vue.use(ButtonToolbarPlugin);
+Vue.use(FormGroupPlugin);
 Vue.use(InputGroupPlugin);
+Vue.use(FormTextareaPlugin);
 Vue.use(FormInputPlugin);
 Vue.use(FormSelectPlugin);
 

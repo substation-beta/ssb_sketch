@@ -13,24 +13,32 @@ export default new VueI18n({
         en: {
 			loaded_at: "loaded at",
 			commands: "Commands",
-			lineWidth: "Line width",
-			lineCap: "Line cap",
-			lineJoin: "Line join",
-			viewportWidth: "Viewport (width)",
-			viewportHeight: "Viewport (height)",
-			viewportOffsetX: "Offset (horizontal)",
-			viewportOffsetY: "Offset (vertical)"
+			line: {
+				title: "Line",
+				width: "Width",
+				cap: "Cap",
+				join: "Join"
+			},
+			viewport: {
+				title: "Viewport",
+				size: "Size",
+				offset: "Offset"
+			}
 		},
 		de: {
 			loaded_at: "geladen am",
 			commands: "Befehle",
-			lineWidth: "Linien Breite",
-			lineCap: "Linienende",
-			lineJoin: "Linienverbindung",
-			viewportWidth: "Ansicht (Breite)",
-			viewportHeight: "Ansicht (Höhe)",
-			viewportOffsetX: "Verschiebung (horizontal)",
-			viewportOffsetY: "Verschiebung (vertikal)"
+			line: {
+				title: "Linie",
+				width: "Breite",
+				cap: "Ende",
+				join: "Verbindung"
+			},
+			viewport: {
+				title: "Ansicht",
+				size: "Größe",
+				offset: "Verschiebung"
+			}
 		}
 	}
 });
