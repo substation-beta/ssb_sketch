@@ -30,15 +30,6 @@ module.exports = {
 				test: /\.js$/,
 				loader: "babel-loader",
 				options: {
-					presets: [
-						[
-							// Babel preset environment: <https://babeljs.io/docs/en/babel-preset-env>
-							"@babel/preset-env",
-							{
-								targets: ">= 2%, ie 11, not dead"
-							}
-						]
-					],
 					cacheDirectory: true
 				},
 				exclude: /node_modules/
