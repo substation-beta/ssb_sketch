@@ -23,7 +23,8 @@
   "browser": "window",
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack-dev-server --open --hot"
+    "dev": "webpack-dev-server --open --hot",
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -38,10 +39,18 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^3.1.0",
     "css-loader": "^3.5.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "mini-css-extract-plugin": "^0.9.0",
