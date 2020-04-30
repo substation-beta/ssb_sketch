@@ -105,11 +105,10 @@ module.exports = {
 		new OfflinePlugin({
 			// Offline capabilities: <https://github.com/NekR/offline-plugin/blob/master/docs/options.md>
 			appShell: '/',
-			responseStrategy: 'network-first',	// Always check for application updates
 			version: new Date().toISOString(),	// Default doesn't contain seconds for development purpose
 			ServiceWorker: {
-				cacheName: project.name + '-' + project.version,
-				events: true
+				cacheName: project.name,	// In case of multiple apps on same domain (f.e. development)
+				events: true	// Required for update events
 			}
 		}),
 		new WebpackPwaManifest({

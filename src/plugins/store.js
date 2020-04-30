@@ -12,7 +12,7 @@ export default new Vuex.Store({
 		lineWidth: 1,
 		lineCap: 'round',
 		lineJoin: 'round',
-		viewportWidth: null,	// Calculated by given height on canvas update
+		viewportWidth: -1,	// Calculated by given height on canvas update
 		viewportHeight: 100,
 		viewportOffsetX: 50,
 		viewportOffsetY: 50
