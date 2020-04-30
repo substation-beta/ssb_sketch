@@ -1,10 +1,10 @@
 <template>
 	<b-container fluid class="p-0">
 		<b-row no-gutters>
-			<b-col cols="4" class="text-left">
+			<b-col>
 				<b-icon icon="cursor-fill" /> {{ cursor ? cursor.x + " / " + cursor.y : "" }}
 			</b-col>
-			<b-col cols="8" class="text-right">
+			<b-col cols="12" sm="auto">
 				<b><b-icon icon="exclamation-circle" /> v{{ version }}</b> {{ $t('loaded_at') }} <i>{{ date }}</i>
 			</b-col>
 		</b-row>
