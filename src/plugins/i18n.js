@@ -32,12 +32,12 @@ export default new VueI18n({
 				title: 'Linie',
 				width: 'Breite',
 				cap: 'Ende',
-				join: 'Verbindung'
+				join: 'Verbin.'
 			},
 			viewport: {
 				title: 'Ansicht',
 				size: 'Größe',
-				offset: 'Verschiebung'
+				offset: 'Absatz'
 			}
 		}
 	}
