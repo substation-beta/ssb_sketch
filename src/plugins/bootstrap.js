@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {
+	BVConfigPlugin,
 	LayoutPlugin,
 	IconsPlugin,
 	FormGroupPlugin,
@@ -8,9 +9,12 @@ import {
 	FormInputPlugin,
 	FormSelectPlugin
 } from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './bootstrap.scss';
 
+Vue.use(BVConfigPlugin, {
+	formControls: { size: 'sm' },
+	BInputGroup: { size: 'sm' }
+});
 Vue.use(LayoutPlugin);
 Vue.use(IconsPlugin);
 Vue.use(FormGroupPlugin);
