@@ -3,7 +3,7 @@
 		<b-row align-h="center">
 			<b-col cols="12" xl>
 				<b-form-group :label="$t('commands')" :label-for="$id('commands')" label-align="center" label-class="font-weight-bold" label-size="lg">
-					<b-textarea :id="$id('commands')" v-model="commands" autofocus size="sm" rows="5" />
+					<b-textarea :id="$id('commands')" v-model="commands" autofocus size="sm" rows="5" no-resize />
 				</b-form-group>
 			</b-col>
 			<b-col cols="auto">
@@ -41,6 +41,13 @@
 		</b-row>
 	</b-container>
 </template>
+
+<style lang="scss" scoped>
+	.container-fluid {
+		max-height: 12.7rem;
+		overflow-y: auto;
+	}
+</style>
 
 <script>
 import { mapFields } from 'vuex-map-fields';
