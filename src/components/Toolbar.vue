@@ -56,24 +56,25 @@
 <script>
 import { mapFields } from 'vuex-map-fields';
 
-let changeListener;
+const changeListeners = {};
 
 export default {
 	directives: {
 		sync: {
 			bind: (el, binding, vnode) => {
 				el.value = binding.value;
-				changeListener = () => {
+				changeListeners[el] = () => {
 					if (el.checkValidity()) {
 						vnode.context[binding.expression] = el.value;
 					} else {
 						el.value = vnode.context[binding.expression];
 					}
 				};
-				el.addEventListener('change', changeListener);
+				el.addEventListener('change', changeListeners[el]);
 			},
 			unbind: (el) => {
-				el.removeEventListener('change', changeListener);
+				el.removeEventListener('change', changeListeners[el]);
+				delete changeListeners[el];
 			},
 			update: (el, binding) => {
 				el.value = binding.value;
