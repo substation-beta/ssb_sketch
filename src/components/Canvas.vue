@@ -32,7 +32,9 @@ export default {
 			'viewportWidth',
 			'viewportHeight',
 			'viewportOffsetX',
-			'viewportOffsetY'
+			'viewportOffsetY',
+			'viewportOffsetLimit',
+			'viewportDimensionLimit'
 		])
 	},
 	watch: {
@@ -82,12 +84,24 @@ export default {
 			if (this.drag) {
 				this.drag.moveAccum.x += (evt.offsetX - this.drag.lastPosition.x) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.x) >= 1) {
-					this.viewportOffsetX += this.drag.moveAccum.x < 0 ? Math.ceil(this.drag.moveAccum.x) : Math.floor(this.drag.moveAccum.x);
+					this.viewportOffsetX = Math.min(
+						Math.max(
+							this.viewportOffsetX + (this.drag.moveAccum.x < 0 ? Math.ceil(this.drag.moveAccum.x) : Math.floor(this.drag.moveAccum.x)),
+							-this.viewportOffsetLimit
+						),
+						this.viewportOffsetLimit
+					)
 					this.drag.moveAccum.x %= 1;
 				}
 				this.drag.moveAccum.y += (evt.offsetY - this.drag.lastPosition.y) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.y) >= 1) {
-					this.viewportOffsetY += this.drag.moveAccum.y < 0 ? Math.ceil(this.drag.moveAccum.y) : Math.floor(this.drag.moveAccum.y);
+					this.viewportOffsetY = Math.min(
+						Math.max(
+							this.viewportOffsetY + (this.drag.moveAccum.y < 0 ? Math.ceil(this.drag.moveAccum.y) : Math.floor(this.drag.moveAccum.y)),
+							-this.viewportOffsetLimit
+						),
+						this.viewportOffsetLimit
+					)
 					this.drag.moveAccum.y %= 1;
 				}
 				this.drag.lastPosition = { x: evt.offsetX, y: evt.offsetY };
@@ -96,8 +110,13 @@ export default {
 		zoomView(evt) {
 			const heightBase10 = Math.pow(10, Math.floor(Math.log10(this.viewportHeight)));
 			const unitsBase10 = Math.floor(this.viewportHeight / heightBase10);
-			const newHeight = heightBase10 * unitsBase10 + (evt.deltaY < 0 && unitsBase10 === 1 ? -heightBase10 / 10 : Math.sign(evt.deltaY) * heightBase10);
-			this.viewportHeight = Math.max(Math.min(newHeight, 1000000), 1);
+			this.viewportHeight = Math.max(
+				Math.min(
+					heightBase10 * unitsBase10 + (evt.deltaY < 0 && unitsBase10 === 1 ? -heightBase10 / 10 : Math.sign(evt.deltaY) * heightBase10),
+					this.viewportDimensionLimit
+				),
+				1
+			);
 		}
 	}
 };

@@ -15,7 +15,10 @@ export default new Vuex.Store({
 		viewportWidth: -1,	// Calculated by given height on canvas update
 		viewportHeight: 100,
 		viewportOffsetX: 50,
-		viewportOffsetY: 50
+		viewportOffsetY: 50,
+		lineWidthLimit: 1000,	// Read-only (validation)
+		viewportOffsetLimit: 90000,	// Read-only (validation)
+		viewportDimensionLimit: 1000000	// Read-only (validation)
 	},
 	getters: { getField },
 	mutations: { updateField },

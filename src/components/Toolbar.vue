@@ -9,7 +9,7 @@
 			<b-col cols="auto">
 				<b-form-group :label="$t('line.title')" :label-for="$id('lineWidth')" label-align="center" label-class="font-weight-bold" label-size="lg">
 					<b-form-group :label="$t('line.width') + ': '" :label-for="$id('lineWidth')" label-size="sm" label-cols="4" label-align="right">
-						<b-input :id="$id('lineWidth')" v-sync.number="lineWidth" placeholder="1" type="number" min="0" max="100" step="0.125" />
+						<b-input :id="$id('lineWidth')" v-sync.number="lineWidth" :placeholder="$t('please_insert')" type="number" min="0" :max="lineWidthLimit" step="0.125" />
 					</b-form-group>
 					<b-form-group :label="$t('line.cap') + ': '" :label-for="$id('lineCap')" label-size="sm" label-cols="4" label-align="right">
 						<b-select :id="$id('lineCap')" v-model="lineCap" :options="['butt', 'round', 'square']" />
@@ -20,20 +20,21 @@
 				</b-form-group>
 			</b-col>
 			<b-col cols="auto">
-				<b-form-group :label="$t('viewport.title')" :label-for="$id('viewportWidth')" label-align="center" label-class="font-weight-bold" label-size="lg">
+				<b-form-group :label="$t('viewport.title')" :label-for="$id('viewportHeight')" label-align="center" label-class="font-weight-bold" label-size="lg">
 					<b-form-group :label="$t('viewport.size') + ': '" :label-for="$id('viewportHeight')" label-size="sm" label-cols="3" label-align="right">
 						<b-input-group>
+							<label :for="$id('viewportWidth')" class="sr-only">{{ $t('viewport.size') }}</label><!-- Pleasure screen readers ("every input needs a label") -->
 							<b-input :id="$id('viewportWidth')" readonly :value="viewportWidth.toFixed(2)" />
 							<b-input-group-prepend is-text>X</b-input-group-prepend>
-							<b-input :id="$id('viewportHeight')" v-sync.number="viewportHeight" placeholder="100" type="number" min="1" max="1_000_000" step="1" />
+							<b-input :id="$id('viewportHeight')" v-sync.number="viewportHeight" :placeholder="$t('please_insert')" type="number" min="1" :max="viewportDimensionLimit" step="1" />
 						</b-input-group>
 					</b-form-group>
 					<b-form-group :label="$t('viewport.offset') + ': '" :label-for="$id('viewportOffsetX')" label-size="sm" label-cols="3" label-align="right">
 						<b-input-group>
-							<b-input :id="$id('viewportOffsetX')" v-sync.number="viewportOffsetX" placeholder="50" type="number" min="-100_000" max="100_000" step="1" />
+							<b-input :id="$id('viewportOffsetX')" v-sync.number="viewportOffsetX" :placeholder="$t('please_insert')" type="number" :min="-viewportOffsetLimit" :max="viewportOffsetLimit" step="1" />
 							<b-input-group-prepend is-text>X</b-input-group-prepend>
-							<label :for="$id('viewportOffsetY')" class="sr-only">.</label><!-- Pleasure analysis tool ("every input needs a label") -->
-							<b-input :id="$id('viewportOffsetY')" v-sync.number="viewportOffsetY" placeholder="50" type="number" min="-100_000" max="100_000" step="1" />
+							<label :for="$id('viewportOffsetY')" class="sr-only">{{ $t('viewport.offset') }}</label><!-- Pleasure screen readers ("every input needs a label") -->
+							<b-input :id="$id('viewportOffsetY')" v-sync.number="viewportOffsetY" :placeholder="$t('please_insert')" type="number" :min="-viewportOffsetLimit" :max="viewportOffsetLimit" step="1" />
 						</b-input-group>
 					</b-form-group>
 				</b-form-group>
@@ -89,7 +90,10 @@ export default {
 		'viewportWidth',
 		'viewportHeight',
 		'viewportOffsetX',
-		'viewportOffsetY'
+		'viewportOffsetY',
+		'lineWidthLimit',
+		'viewportOffsetLimit',
+		'viewportDimensionLimit'
 	])
 }
 </script>
