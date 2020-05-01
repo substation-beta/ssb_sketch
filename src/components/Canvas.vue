@@ -5,6 +5,7 @@
 		@mouseleave="emitCursor($event); endDrag()"
 		@mousedown="startDrag"
 		@mouseup="endDrag"
+		@wheel="zoomView"
 	><code>Your browser has to support canvas for this application content!</code></canvas>
 </template>
 
@@ -91,6 +92,12 @@ export default {
 				}
 				this.drag.lastPosition = { x: evt.offsetX, y: evt.offsetY };
 			}
+		},
+		zoomView(evt) {
+			const heightBase10 = Math.pow(10, Math.floor(Math.log10(this.viewportHeight)));
+			const unitsBase10 = Math.floor(this.viewportHeight / heightBase10);
+			const newHeight = heightBase10 * unitsBase10 + (evt.deltaY < 0 && unitsBase10 === 1 ? -heightBase10 / 10 : Math.sign(evt.deltaY) * heightBase10);
+			this.viewportHeight = Math.max(Math.min(newHeight, 1000000), 1);
 		}
 	}
 };
