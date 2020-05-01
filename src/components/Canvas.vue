@@ -1,7 +1,10 @@
 <template>
 	<canvas ref="canvas"
-		@mousemove="$emit('cursor', {x: ($event.offsetX / viewportRatio - viewportOffsetX).toFixed(2), y: ($event.offsetY / viewportRatio - viewportOffsetY).toFixed(2)})"
-		@mouseleave="$emit('cursor', null)"
+		@mouseenter="emitCursor"
+		@mousemove="emitCursor($event); updateDrag($event)"
+		@mouseleave="emitCursor($event); endDrag()"
+		@mousedown="startDrag"
+		@mouseup="endDrag"
 	><code>Your browser has to support canvas for this application content!</code></canvas>
 </template>
 
@@ -15,7 +18,10 @@
 import { mapFields } from 'vuex-map-fields';
 
 export default {
-	data: () => ({ viewportRatio: null }),
+	data: () => ({
+		viewportRatio: null,
+		drag: null
+	}),
 	computed: {
 		...mapFields([
 			'commands',
@@ -53,6 +59,38 @@ export default {
 		updateViewportResolution() {
 			this.viewportRatio = this.$refs.canvas.height / this.viewportHeight;
 			this.viewportWidth = this.$refs.canvas.width / this.viewportRatio;
+		},
+		emitCursor(evt) {
+			this.$emit(
+				'cursor',
+				evt.type === 'mouseleave'
+					? null
+					: { x: (evt.offsetX / this.viewportRatio - this.viewportOffsetX).toFixed(2), y: (evt.offsetY / this.viewportRatio - this.viewportOffsetY).toFixed(2) }
+			);
+		},
+		startDrag(evt) {
+			this.drag = {
+				lastPosition: { x: evt.offsetX, y: evt.offsetY },
+				moveAccum: { x: 0, y: 0 }
+			};
+		},
+		endDrag() {
+			this.drag = null;
+		},
+		updateDrag(evt) {
+			if (this.drag) {
+				this.drag.moveAccum.x += (evt.offsetX - this.drag.lastPosition.x) / this.viewportRatio;
+				if (Math.abs(this.drag.moveAccum.x) >= 1) {
+					this.viewportOffsetX += this.drag.moveAccum.x < 0 ? Math.ceil(this.drag.moveAccum.x) : Math.floor(this.drag.moveAccum.x);
+					this.drag.moveAccum.x %= 1;
+				}
+				this.drag.moveAccum.y += (evt.offsetY - this.drag.lastPosition.y) / this.viewportRatio;
+				if (Math.abs(this.drag.moveAccum.y) >= 1) {
+					this.viewportOffsetY += this.drag.moveAccum.y < 0 ? Math.ceil(this.drag.moveAccum.y) : Math.floor(this.drag.moveAccum.y);
+					this.drag.moveAccum.y %= 1;
+				}
+				this.drag.lastPosition = { x: evt.offsetX, y: evt.offsetY };
+			}
 		}
 	}
 };
