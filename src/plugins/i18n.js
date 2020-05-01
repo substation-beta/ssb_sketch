@@ -32,7 +32,7 @@ export default new VueI18n({
 				title: 'Linie',
 				width: 'Breite',
 				cap: 'Ende',
-				join: 'Verbin.'
+				join: 'Verb.'
 			},
 			viewport: {
 				title: 'Ansicht',
