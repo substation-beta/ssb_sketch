@@ -35,8 +35,13 @@ $open-sans-font-folder: 'assets/fonts/';
         url($open-sans-font-folder + 'open-sans-v17-latin-800italic.woff') format('woff');
 }
 
-/* Set global font */
+/* Root style */
 html {
+	/* Set global font */
 	font-family: 'Open Sans';
 	font-size: 16px;
+
+	/* Detect internet explorer */
+	.browser-ie { display: none; }
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { .browser-ie { display: block; } }
 }

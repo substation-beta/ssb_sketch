@@ -3,7 +3,7 @@
 		<header class="text-white bg-dark">
 			<ssb-toolbar />
 		</header>
-		<main class="flex-fill overflow-hidden text-black bg-light">
+		<main class="flex-fill overflow-hidden">
 			<ssb-canvas @cursor="canvasCursor = $event" />
 		</main>
 		<footer class="text-white bg-dark">
