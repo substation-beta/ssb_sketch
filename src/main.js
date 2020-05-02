@@ -2,7 +2,8 @@
 import Vue from 'vue';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
-// Import plugins
+// Import directives & plugins
+import './directives/sync';
 import './plugins/uid';
 import './plugins/bootstrap';
 import store from './plugins/store';
