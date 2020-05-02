@@ -12,7 +12,7 @@ export default new VueI18n({
 	messages: {
 		en: {
 			loaded_at: 'loaded at',
-			please_insert: 'Please insert',
+			missing_number: 'Number?',
 			commands: 'Commands',
 			line: {
 				title: 'Line',
@@ -28,7 +28,7 @@ export default new VueI18n({
 		},
 		de: {
 			loaded_at: 'geladen am',
-			please_insert: 'Bitte eingeben',
+			missing_number: 'Zahl?',
 			commands: 'Befehle',
 			line: {
 				title: 'Linie',
