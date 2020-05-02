@@ -126,8 +126,8 @@ module.exports = {
 			theme_color: 'black',
 			display: 'standalone',
 			orientation: 'portrait',
-			start_url: '.',
-			scope: '/',
+			start_url: './',
+			scope: '.',
 			icons: [
 				{
 					src: 'src/favicon.png',
