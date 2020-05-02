@@ -21,7 +21,10 @@ module.exports = {
 		extensions: [
 			'.js',
 			'.vue'
-		]
+		],
+		alias: {
+			'~': path.resolve(__dirname)
+		}
 	},
 	module: {
 		rules: [

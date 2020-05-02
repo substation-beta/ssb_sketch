@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { getField, updateField } from 'vuex-map-fields';
 import createPersistedState from 'vuex-persistedstate';
-import project from '../../package.json';
+import project from '~/package.json';
 
 Vue.use(Vuex);
 
