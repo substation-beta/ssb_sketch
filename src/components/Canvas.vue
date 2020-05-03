@@ -17,6 +17,7 @@
 
 <script>
 import { mapFields } from 'vuex-map-fields';
+import * as MathExt from '../utils/math';
 
 export default {
 	data: () => ({
@@ -84,38 +85,31 @@ export default {
 			if (this.drag) {
 				this.drag.moveAccum.x += (evt.offsetX - this.drag.lastPosition.x) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.x) >= 1) {
-					this.viewportOffsetX = Math.min(
-						Math.max(
-							this.viewportOffsetX + (this.drag.moveAccum.x < 0 ? Math.ceil(this.drag.moveAccum.x) : Math.floor(this.drag.moveAccum.x)),
-							-this.viewportOffsetLimit
-						),
+					this.viewportOffsetX = MathExt.clamp(
+						this.viewportOffsetX + MathExt.floorNeg(this.drag.moveAccum.x),
+						-this.viewportOffsetLimit,
 						this.viewportOffsetLimit
-					)
+					);
 					this.drag.moveAccum.x %= 1;
 				}
 				this.drag.moveAccum.y += (evt.offsetY - this.drag.lastPosition.y) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.y) >= 1) {
-					this.viewportOffsetY = Math.min(
-						Math.max(
-							this.viewportOffsetY + (this.drag.moveAccum.y < 0 ? Math.ceil(this.drag.moveAccum.y) : Math.floor(this.drag.moveAccum.y)),
-							-this.viewportOffsetLimit
-						),
+					this.viewportOffsetY = MathExt.clamp(
+						this.viewportOffsetY + MathExt.floorNeg(this.drag.moveAccum.y),
+						-this.viewportOffsetLimit,
 						this.viewportOffsetLimit
-					)
+					);
 					this.drag.moveAccum.y %= 1;
 				}
 				this.drag.lastPosition = { x: evt.offsetX, y: evt.offsetY };
 			}
 		},
 		zoomView(evt) {
-			const heightBase10 = Math.pow(10, Math.floor(Math.log10(this.viewportHeight)));
-			const unitsBase10 = Math.floor(this.viewportHeight / heightBase10);
-			this.viewportHeight = Math.max(
-				Math.min(
-					heightBase10 * unitsBase10 + (evt.deltaY < 0 && unitsBase10 === 1 ? -heightBase10 / 10 : Math.sign(evt.deltaY) * heightBase10),
-					this.viewportDimensionLimit
-				),
-				1
+			const { base, units } = MathExt.floor10(this.viewportHeight);
+			this.viewportHeight = MathExt.clamp(
+				base * units + (evt.deltaY < 0 && units === 1 ? -base / 10 : Math.sign(evt.deltaY) * base),
+				1,
+				this.viewportDimensionLimit
 			);
 		}
 	}
@@ -129,6 +123,7 @@ function draw() {
 	ctx.fillStyle = 'white';
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.save();
+
 	// Draw axis
 	const axisSize = { width: 4, height: 12 };
 	ctx.fillStyle = 'black';
@@ -141,9 +136,11 @@ function draw() {
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'middle';
 	ctx.fillText('0', axisSize.height + 1, this.viewportRatio * this.viewportOffsetY);
+
 	// Assign viewport
 	ctx.scale(this.viewportRatio, this.viewportRatio);
 	ctx.translate(this.viewportOffsetX, this.viewportOffsetY);
+
 	// Draw commands!
 	ctx.fillStyle = 'blue';
 	ctx.strokeStyle = 'red';

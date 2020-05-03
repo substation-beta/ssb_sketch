@@ -123,10 +123,10 @@ module.exports = {
 			categories: project.keywords,
 			lang: 'en-US',
 			background_color: 'black',
-			theme_color: 'black',
+			theme_color: 'purple',
 			display: 'standalone',
 			orientation: 'portrait',
-			start_url: './',
+			start_url: '.',
 			scope: '.',
 			icons: [
 				{
