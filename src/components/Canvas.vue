@@ -105,9 +105,9 @@ export default {
 			}
 		},
 		zoomView(evt) {
-			const { base, units } = MathExt.floor10(this.viewportHeight);
+			const { base10, units10 } = MathExt.floor10(this.viewportHeight);
 			this.viewportHeight = MathExt.clamp(
-				base * units + (evt.deltaY < 0 && units === 1 ? -base / 10 : Math.sign(evt.deltaY) * base),
+				base10 * units10 + (evt.deltaY < 0 && units10 === 1 ? -base10 / 10 : Math.sign(evt.deltaY) * base10),
 				1,
 				this.viewportDimensionLimit
 			);
@@ -115,6 +115,18 @@ export default {
 	}
 };
 
+const drawConfig = {
+	tick: {
+		large: {
+			width: 4,
+			height: 12
+		},
+		small: {
+			width: 3,
+			height: 8
+		}
+	}
+}
 function draw() {
 	// Canvas rendering reference: <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
 	// Prepare canvas
@@ -125,17 +137,16 @@ function draw() {
 	ctx.save();
 
 	// Draw axis
-	const axisSize = { width: 4, height: 12 };
 	ctx.fillStyle = 'black';
-	ctx.font = axisSize.height + "px 'Open Sans'";
-	ctx.fillRect(this.viewportRatio * this.viewportOffsetX - axisSize.width / 2, 0, axisSize.width, axisSize.height);
+	ctx.font = drawConfig.tick.large.height + "px 'Open Sans'";
+	ctx.fillRect(this.viewportRatio * this.viewportOffsetX - drawConfig.tick.large.width / 2, 0, drawConfig.tick.large.width, drawConfig.tick.large.height);
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'top';
-	ctx.fillText('0', this.viewportRatio * this.viewportOffsetX, axisSize.height + 1);
-	ctx.fillRect(0, this.viewportRatio * this.viewportOffsetY - axisSize.width / 2, axisSize.height, axisSize.width);
+	ctx.fillText('0', this.viewportRatio * this.viewportOffsetX, drawConfig.tick.large.height + 1);
+	ctx.fillRect(0, this.viewportRatio * this.viewportOffsetY - drawConfig.tick.large.width / 2, drawConfig.tick.large.height, drawConfig.tick.large.width);
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'middle';
-	ctx.fillText('0', axisSize.height + 1, this.viewportRatio * this.viewportOffsetY);
+	ctx.fillText('0', drawConfig.tick.large.height + 1, this.viewportRatio * this.viewportOffsetY);
 
 	// Assign viewport
 	ctx.scale(this.viewportRatio, this.viewportRatio);
