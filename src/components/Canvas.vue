@@ -1,10 +1,10 @@
 <template>
 	<canvas ref="canvas"
-		@mouseenter="emitCursor"
-		@mousemove="emitCursor($event); updateDrag($event)"
-		@mouseleave="emitCursor($event); endDrag()"
-		@mousedown="startDrag"
-		@mouseup="endDrag"
+		@pointerenter="emitCursor"
+		@pointermove="emitCursor($event); updateDrag($event)"
+		@pointerleave="emitCursor($event); endDrag()"
+		@pointerdown="startDrag"
+		@pointerup="endDrag"
 		@wheel="zoomView"
 	><code>Your browser has to support canvas for this application content!</code></canvas>
 </template>
@@ -67,14 +67,14 @@ export default {
 		emitCursor(evt) {
 			this.$emit(
 				'cursor',
-				evt.type === 'mouseleave'
+				evt.type === 'pointerleave'
 					? null
-					: { x: (evt.offsetX / this.viewportRatio - this.viewportOffsetX).toFixed(2), y: (evt.offsetY / this.viewportRatio - this.viewportOffsetY).toFixed(2) }
+					: { x: (evt.layerX / this.viewportRatio - this.viewportOffsetX).toFixed(2), y: (evt.layerY / this.viewportRatio - this.viewportOffsetY).toFixed(2) }
 			);
 		},
 		startDrag(evt) {
 			this.drag = {
-				lastPosition: { x: evt.offsetX, y: evt.offsetY },
+				lastPosition: { x: evt.layerX, y: evt.layerY },
 				moveAccum: { x: 0, y: 0 }
 			};
 		},
@@ -83,7 +83,7 @@ export default {
 		},
 		updateDrag(evt) {
 			if (this.drag) {
-				this.drag.moveAccum.x += (evt.offsetX - this.drag.lastPosition.x) / this.viewportRatio;
+				this.drag.moveAccum.x += (evt.layerX - this.drag.lastPosition.x) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.x) >= 1) {
 					this.viewportOffsetX = MathExt.clamp(
 						this.viewportOffsetX + MathExt.floorNeg(this.drag.moveAccum.x),
@@ -92,7 +92,7 @@ export default {
 					);
 					this.drag.moveAccum.x %= 1;
 				}
-				this.drag.moveAccum.y += (evt.offsetY - this.drag.lastPosition.y) / this.viewportRatio;
+				this.drag.moveAccum.y += (evt.layerY - this.drag.lastPosition.y) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.y) >= 1) {
 					this.viewportOffsetY = MathExt.clamp(
 						this.viewportOffsetY + MathExt.floorNeg(this.drag.moveAccum.y),
@@ -101,7 +101,7 @@ export default {
 					);
 					this.drag.moveAccum.y %= 1;
 				}
-				this.drag.lastPosition = { x: evt.offsetX, y: evt.offsetY };
+				this.drag.lastPosition = { x: evt.layerX, y: evt.layerY };
 			}
 		},
 		zoomView(evt) {
