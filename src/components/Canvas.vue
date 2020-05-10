@@ -43,7 +43,7 @@ export default {
 		lineWidth: draw,
 		lineCap: draw,
 		lineJoin: draw,
-		viewportHeight() { this.updateViewportResolution(); draw.bind(this)(); },
+		viewportHeight() { this.updateViewportResolution(); draw.call(this); },
 		viewportOffsetX: draw,
 		viewportOffsetY: draw
 	},
@@ -54,7 +54,7 @@ export default {
 			canvas.setAttribute('width', canvasParent.offsetWidth);
 			canvas.setAttribute('height', canvasParent.offsetHeight);
 			this.updateViewportResolution();
-			draw.bind(this)();
+			draw.call(this);
 		}.bind(this);
 		initCanvas();
 		window.addEventListener('resize', initCanvas);

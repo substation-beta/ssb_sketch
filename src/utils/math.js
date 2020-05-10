@@ -11,7 +11,7 @@
  * @return {Number} Clamped input.
  * @example clamp(1, 3, 5)	// 3
  */
-export function clamp(x, min, max) {
+export function clamp(x, min = 0, max = 0) {
 	return Math.min(Math.max(x, min), max);
 }
 /**
