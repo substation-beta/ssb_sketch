@@ -18,6 +18,7 @@
     },
     "env": {
         "browser": true,
-        "serviceworker": true
+        "serviceworker": true,
+        "jest": true
     }
 }

@@ -22,6 +22,8 @@ jobs:
         run: npm install
       - name: Lint code
         run: npm run lint
+      - name: Test units
+        run: npm run test
       - name: Build app
         run: npm run build
       - name: Deploy Github Pages

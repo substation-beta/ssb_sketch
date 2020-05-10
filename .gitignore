@@ -7,3 +7,6 @@
 
 # NPM/webpack output
 /dist/
+
+# Jest output
+/coverage/
