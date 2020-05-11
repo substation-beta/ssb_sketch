@@ -64,7 +64,12 @@ export default {
 			this.viewportRatio = this.$refs.canvas.height / this.viewportHeight;
 			this.viewportWidth = this.$refs.canvas.width / this.viewportRatio;
 		},
+		isolateEvent(evt) {
+			evt.preventDefault();
+			evt.stopImmediatePropagation();
+		},
 		emitCursor(evt) {
+			this.isolateEvent(evt);
 			this.$emit(
 				'cursor',
 				evt.type === 'pointerleave'
@@ -73,6 +78,7 @@ export default {
 			);
 		},
 		startDrag(evt) {
+			this.isolateEvent(evt);
 			this.drag = {
 				lastPosition: { x: evt.layerX, y: evt.layerY },
 				moveAccum: { x: 0, y: 0 }
@@ -83,6 +89,7 @@ export default {
 		},
 		updateDrag(evt) {
 			if (this.drag) {
+				this.isolateEvent(evt);
 				this.drag.moveAccum.x += (evt.layerX - this.drag.lastPosition.x) / this.viewportRatio;
 				if (Math.abs(this.drag.moveAccum.x) >= 1) {
 					this.viewportOffsetX = MathExt.clamp(
