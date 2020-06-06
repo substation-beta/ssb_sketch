@@ -130,10 +130,16 @@ module.exports = {
 			scope: '.',
 			icons: [
 				{
-					src: 'src/favicon.png',
-					sizes: [64, 128, 256, 512],	// 512x512 required for installation splash screen
+					src: 'src/assets/images/logo.png',
+					sizes: [48, 128, 192, 512],	// 512x512 required for installation splash screen
 					destination: 'icons',
 					ios: true
+				},
+				{
+					src: 'src/assets/images/logo.png',
+					size: 512,
+					destination: 'icons',
+					purpose: 'maskable'
 				}
 			],
 			ios: true
