@@ -164,8 +164,11 @@ module.exports = {
 		hints: false
 	},
 	devServer: {
-		compress: true,
 		contentBase: path.join(__dirname, 'dist'),
-		port: 8081
+		port: 8081,
+		compress: true,
+		// External access
+		host: '0.0.0.0',
+		useLocalIp: true
 	}
 }
