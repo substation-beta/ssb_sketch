@@ -102,7 +102,7 @@ module.exports = {
 		}),
 		new VueLoaderPlugin(),
 		new CompressionPlugin({
-			threshold: 8192,	// Don"t process already tiny files
+			threshold: 8192,	// Don't process already tiny files
 			cache: true	// Faster re-builds
 		}),
 		new OfflinePlugin({
