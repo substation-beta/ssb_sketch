@@ -45,3 +45,16 @@ html {
 	.browser-ie { display: none; }
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { .browser-ie { display: block; } }
 }
+
+header {
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+	z-index: 99;
+	display: block;
+}
+
+main {
+	padding-top: 54px;
+}
