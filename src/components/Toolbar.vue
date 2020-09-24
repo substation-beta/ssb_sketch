@@ -12,6 +12,7 @@
 							<b-textarea :id="$id('commands')" v-model="commands" lazy autofocus rows="5" no-resize />
 						</b-form-group>
 					</b-col>
+
 					<b-col cols="auto">
 						<b-form-group :label="$t('line.title')" :label-for="$id('lineWidth')" label-align="center" label-class="font-weight-bold" label-size="lg">
 							<b-form-group :label="$t('line.width') + ': '" :label-for="$id('lineWidth')" label-size="sm" label-cols="4" label-align="right">
@@ -25,6 +26,7 @@
 							</b-form-group>
 						</b-form-group>
 					</b-col>
+
 					<b-col cols="auto">
 						<b-form-group :label="$t('viewport.title')" :label-for="$id('viewportHeight')" label-align="center" label-class="font-weight-bold" label-size="lg">
 							<b-form-group :label="$t('viewport.size') + ': '" :label-for="$id('viewportHeight')" label-size="sm" label-cols="3" label-align="right">
