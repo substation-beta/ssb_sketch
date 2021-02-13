@@ -9,7 +9,7 @@
 
 | Index of contents |
 |:---:|
-| [Preamble](#preamble) &bull; [Setup](#setup) &bull; [Build](#build) &bull; [Development](#development) &bull; [License](#license) &bull; [Recommended development tools](#recommended-development-tools) |
+| [Preamble](#preamble) &bull; [Setup](#setup) &bull; [Build](#build) &bull; [Development](#development)  &bull; [Contributing](#contributing)  &bull; [License](#license) &bull; [Recommended development tools](#recommended-development-tools) |
 
 
 # Preamble
@@ -25,6 +25,9 @@ This project provides a simple canvas to create shapes for the ssb-format. It is
 ## Development
 * Live-server: `npm run dev`
 * Lint: `npm run lint`
+
+# Contributing
+For contribution details see our general contribution guidelines in the main repository: [CONTRIBUTION.md](https://github.com/substation-beta/ssb_implementation/blob/master/CONTRIBUTING.md).
 
 ## License
 TBD
