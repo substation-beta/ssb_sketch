@@ -31,5 +31,6 @@ TBD
 
 ## Recommended development tools
 * [VSCode](https://code.visualstudio.com/) with extensions [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+* [Webstorm](https://www.jetbrains.com/webstorm/) with extensions [Vue.js](https://plugins.jetbrains.com/plugin/9442-vue-js) and [ESLint](https://www.jetbrains.com/help/webstorm/eslint.html)
 * [Firefox](https://www.mozilla.org/firefox/new/) with extension [Vue DevTools](https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/)
 * [Chrome](https://www.google.com/chrome/) with extension [Vue DevTools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en)
