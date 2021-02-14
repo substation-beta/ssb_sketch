@@ -3,7 +3,7 @@
 </p>
 
 # ssb_sketch
-[![Demo](https://img.shields.io/website/https/ssb-sketch.github.io.svg?label=demo&logo=read%20the%20docs&logoColor=white)](https://substation-beta.github.io/ssb_sketch/) [![License](https://img.shields.io/github/license/substation-beta/ssb_sketch.svg?logo=github)](https://github.com/substation-beta/ssb_sketch/blob/master/LICENSE-APACHE-2.0) [![Discord channel](https://img.shields.io/discord/586927398277087235.svg?logo=discord)](https://discord.gg/H8HnPSv)
+[![Demo](https://img.shields.io/website.svg?url=https%3A%2F%2Fsubstation-beta.github.io%2Fssb_sketch?label=demo&logo=read%20the%20docs&logoColor=white)](https://substation-beta.github.io/ssb_sketch/) [![License](https://img.shields.io/github/license/substation-beta/ssb_sketch.svg?logo=github)](https://github.com/substation-beta/ssb_sketch/blob/master/LICENSE-APACHE-2.0) [![Discord channel](https://img.shields.io/discord/586927398277087235.svg?logo=discord)](https://discord.gg/H8HnPSv)
 
 ![Build Status](https://github.com/substation-beta/ssb_sketch/workflows/Build%20application/badge.svg) [![Last commit](https://img.shields.io/github/last-commit/substation-beta/ssb_sketch.svg?logo=github)](https://github.com/substation-beta/ssb_sketch/graphs/commit-activity)
 
