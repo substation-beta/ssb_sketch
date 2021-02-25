@@ -1,0 +1,47 @@
+{
+  "icons": [
+    {
+      "src": "icons/icon_512x512.8c761a599bad3b9f676abd0a22180b19.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon_512x512.8c761a599bad3b9f676abd0a22180b19.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon_192x192.f0cb181d52d2d3d49e6f0ee8bee7a46c.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon_128x128.58e0073e07072ce499c70f4fbe7e8207.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon_48x48.a3c190c56c73defe3672d30125dd8540.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "name": "SSB sketch",
+  "short_name": "ssb_sketch",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Simple canvas for shape prototyping as PWA.",
+  "categories": [
+    "ssb",
+    "sketch",
+    "canvas",
+    "shape",
+    "pwa"
+  ],
+  "lang": "en-US",
+  "background_color": "black",
+  "theme_color": "purple",
+  "scope": "."
+}
