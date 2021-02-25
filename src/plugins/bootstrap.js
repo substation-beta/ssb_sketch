@@ -7,7 +7,10 @@ import {
 	InputGroupPlugin,
 	FormTextareaPlugin,
 	FormInputPlugin,
-	FormSelectPlugin
+	FormSelectPlugin,
+	ButtonPlugin,
+	CollapsePlugin,
+	NavbarPlugin
 } from 'bootstrap-vue';
 import './bootstrap.scss';
 
@@ -22,6 +25,9 @@ Vue.use(InputGroupPlugin);
 Vue.use(FormTextareaPlugin);
 Vue.use(FormInputPlugin);
 Vue.use(FormSelectPlugin);
+Vue.use(ButtonPlugin);
+Vue.use(CollapsePlugin);
+Vue.use(NavbarPlugin);
 
 // For more:
 // * https://bootstrap-vue.js.org/docs#tree-shaking-with-module-bundlers
